@@ -18,10 +18,10 @@ const App = () => {
           <Route path="register" element={<AuthRegister />} />
         </Route>
           <Route path="/admin" element={<AdminLayout/>}>
-            <Route path="/dashboard" element={<AdminDashboard/>}/>
-            <Route path="/orders" element={<AdminOrder/>}/>
-            <Route path="/products" element={<AdminProduct/>}/>
-            <Route path="/features" element={<AdminFeature/>}/>
+            <Route path="dashboard" element={<AdminDashboard/>}/>
+            <Route path="orders" element={<AdminOrder/>}/>
+            <Route path="products" element={<AdminProduct/>}/>
+            <Route path="features" element={<AdminFeature/>}/>
           </Route>
       </Routes>
     </div>
