@@ -13,26 +13,47 @@ import Customeraccountpage from "./Pages/CustomerPanel/accountpage";
 import CustomercheckoutPage from "./Pages/CustomerPanel/checkoutPage";
 import CustomerHome from "./Pages/CustomerPanel/hero";
 import CustomerListing from "./Pages/CustomerPanel/listingPage";
+import CheckAuth from "./components/Common/cheackAuth";
 
 const App = () => {
+  const isAuthenticated = false;
+  const user = null;
   return (
     <div className="flex flex-col overflow-hidden bg-white">
       <Routes>
-        <Route path="/auth" element={<AuthLayout />}>
+        <Route
+          path="/auth"
+          element={
+            <CheckAuth isAuthenticated={isAuthenticated} user={user}>
+              <AuthLayout />
+            </CheckAuth>
+          }
+        >
           <Route path="login" element={<AuthLogin />} />
           <Route path="register" element={<AuthRegister />} />
         </Route>
-        <Route path="/admin" element={<AdminLayout />}>
+        <Route
+          path="/admin"
+          element={
+            <CheckAuth>
+              <AdminLayout isAuthenticated={isAuthenticated} user={user}/>
+            </CheckAuth>
+          }
+        >
           <Route path="dashboard" element={<AdminDashboard />} />
           <Route path="orders" element={<AdminOrder />} />
           <Route path="products" element={<AdminProduct />} />
           <Route path="features" element={<AdminFeature />} />
         </Route>
-        <Route path="/customer" element={<CustomerView />}>
-          <Route path="account" element={<Customeraccountpage />} />
-          <Route path="checkout" element={<CustomercheckoutPage />} />
+        <Route path="/customer" element={
+          <CheckAuth isAuthenticated={isAuthenticated} user={user}>
+            <CustomerView />
+          </CheckAuth>
+        }>
           <Route path="home" element={<CustomerHome />} />
           <Route path="listing" element={<CustomerListing />} />
+          <Route path="checkout" element={<CustomercheckoutPage />} />
+          <Route path="account" element={<Customeraccountpage />} />
         </Route>
         <Route path="*" element={<Index />} />
       </Routes>
