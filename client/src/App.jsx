@@ -17,7 +17,6 @@ import CustomerListing from "./Pages/CustomerPanel/listingPage";
 const App = () => {
   return (
     <div className="flex flex-col overflow-hidden bg-white">
-      <h1>header component</h1>
       <Routes>
         <Route path="/auth" element={<AuthLayout />}>
           <Route path="login" element={<AuthLogin />} />
